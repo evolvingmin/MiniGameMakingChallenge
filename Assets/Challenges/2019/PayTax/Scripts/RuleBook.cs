@@ -17,7 +17,7 @@ namespace Challenge.PayTax
         private float payTaxTime = 10.0f;
 
         [SerializeField]
-        private int coinValue = 10;
+        private int coinValue = 100;
 
         [SerializeField]
         private int initialPayAmount = 100;
@@ -26,9 +26,9 @@ namespace Challenge.PayTax
         private float inflationValue = 1.05f;
 
         private int payAmout;
-
+        /*
         private int turn = 0;
-
+        */
         public int PayAmout
         {
             get
@@ -50,6 +50,14 @@ namespace Challenge.PayTax
             get
             {
                 return coinSpawnTime;
+            }
+        }
+
+        public int CoinValue
+        {
+            get
+            {
+                return coinValue;
             }
         }
 

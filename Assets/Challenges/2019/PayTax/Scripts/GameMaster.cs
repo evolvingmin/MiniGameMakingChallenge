@@ -94,7 +94,7 @@ namespace Challenge.PayTax
         {
             if(Command == "CoinCollect")
             {
-                player.Deposit += Param1;
+                player.Deposit += ruleBook.CoinValue;
                 audioSource.Play();
             }
         }
