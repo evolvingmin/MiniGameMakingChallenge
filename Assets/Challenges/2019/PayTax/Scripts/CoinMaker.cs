@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using ChallengeKit;
 using ChallengeKit.Board;
@@ -6,7 +7,7 @@ using UnityEngine;
 
 namespace Challenge.PayTax
 {
-    public class Banker : MonoBehaviour
+    public class CoinMaker : MonoBehaviour
     {
         private Dictionary<string, GameObject> loadedPrefabs;
         private Vector3 unitScale;
@@ -29,15 +30,35 @@ namespace Challenge.PayTax
             return Define.Result.OK;
         }
 
+        public void CollectCoin(Coin coin)
+        {
+            // 메세징 관련 로직 셈플코드. 정리해서 툴킷화 하자.
+            GameMaster.Instance.ProcMessege("CoinCollect", coin.Amount);
+            resourceManager.CollectGameObject(resourceCategory, coin.gameObject);
+        }
+
         public Define.Result GenerateCoin(int x, int y)
         {
             Block block = boardController.GetBlock(x, y);
             GameObject coinObject = resourceManager.GetObject<GameObject>(resourceCategory, baseCoin);
             coinObject.transform.SetParent(transform);
             Coin coin = coinObject.GetComponent<Coin>();
-            coin.Initialize(block.transform.localPosition,unitScale);
+            coin.Initialize(this, block, unitScale);
 
             return Define.Result.OK;
+        }
+
+        public void GenerateCoin()
+        {
+            Block block = boardController.GetBlockByRandomly();
+
+            if (block == null)
+                return;
+
+            GameObject coinObject = resourceManager.GetObject<GameObject>(resourceCategory, baseCoin);
+            coinObject.transform.SetParent(transform);
+            Coin coin = coinObject.GetComponent<Coin>();
+            coin.Initialize(this, block, unitScale);
         }
     }
 }

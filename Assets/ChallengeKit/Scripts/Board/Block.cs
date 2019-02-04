@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace ChallengeKit.Board
@@ -28,7 +29,6 @@ namespace ChallengeKit.Board
         public Rect Rect { get; private set; }
         private BlockState state = BlockState.None;
 
-
         private IBlockInteractable placedInteractable;
         public BlockState State
         {
@@ -43,7 +43,15 @@ namespace ChallengeKit.Board
             }
         }
 
-        
+        private bool assigned = false;
+        public bool Assigned
+        {
+            get
+            {
+                return assigned;
+            }
+        }
+
         private RectTransform rectTransform;
 
         private void Awake()
@@ -72,9 +80,19 @@ namespace ChallengeKit.Board
             return Define.Result.OK;
         }
 
-        public void PlaceInteratable(IBlockInteractable blockInteractable)
+        public void AttachInteratable(IBlockInteractable blockInteractable)
         {
             placedInteractable = blockInteractable;
+            assigned = true;
+            boardManager.ReportAssigned();
+        }
+
+        public void DettachInteratable()
+        {
+            placedInteractable = null;
+            assigned = false;
+            boardManager.ReportAssigned(false);
+            ResetState();
         }
 
         public override string ToString()
@@ -86,6 +104,7 @@ namespace ChallengeKit.Board
         {
             if (state == BlockState.Selected)
                 return;
+
             UpdateState(BlockState.Over);
         }
 
@@ -100,7 +119,11 @@ namespace ChallengeKit.Board
         public void OnPointerClick()
         {
             boardManager.SetSelected(this);
-            Debug.Log(ToString());
+        }
+
+        public void ResetState()
+        {
+            UpdateState(BlockState.Default);
         }
 
         private void UpdateState(BlockState newState)

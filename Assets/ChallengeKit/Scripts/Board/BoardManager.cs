@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ChallengeKit.Board
@@ -33,6 +34,16 @@ namespace ChallengeKit.Board
                 return stateColors;
             }
         }
+
+        public bool IsFull
+        {
+            get
+            {
+                return currentAssignedBlock >= width * height;
+            }
+        }
+
+        private int currentAssignedBlock = 0;
 
         public Define.Result Initialize(ResourceManager resourceManager, Vector3 uniformCenter, Vector3 uniformScale)
         {
@@ -71,6 +82,16 @@ namespace ChallengeKit.Board
             return Define.Result.OK;
         }
 
+        public void ReportAssigned(bool isIncrease = true)
+        {
+            if (isIncrease)
+                currentAssignedBlock++;
+            else
+                currentAssignedBlock--;
+
+            currentAssignedBlock = Mathf.Clamp(currentAssignedBlock, 0, width * height);
+        }
+
         public void SetSelected(Block block)
         {
             if(selectedBlock != block)
@@ -82,6 +103,16 @@ namespace ChallengeKit.Board
                 selectedBlock = block;
                 selectedBlock.State = BlockState.Selected;
             }
+        }
+
+        public bool IsAvailable(int x, int y)
+        {
+            Define.Result result = IsInRange(x, y);
+
+            if (result != Define.Result.OK)
+                return false;
+
+            return !blocks[y][x].Assigned;
         }
 
         public Define.Result IsInRange(int x, int y)
@@ -103,6 +134,29 @@ namespace ChallengeKit.Board
 
             return null;
         }
+
+        public Block GetBlockByRandomly()
+        {
+            int x = 0, y = 0;
+            
+            // todo : need optimization.
+            do
+            {
+                x = UnityEngine.Random.Range(0, width);
+                y = UnityEngine.Random.Range(0, height);
+            }
+            while (IsAvailable(x, y) == false && IsFull == false);
+
+            if(IsAvailable(x, y))
+            {
+                return blocks[y][x];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
 
         /*
         private void OnDrawGizmosSelected()

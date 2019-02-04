@@ -9,28 +9,39 @@ namespace Challenge.PayTax
 {
     public class Coin : MonoBehaviour, IBlockInteractable
     {
-        //SpriteRenderer spriteRenderer;
+        Block block;
+        CoinMaker coinMaker;
 
-        private void Awake()
+        [SerializeField]
+        private int amount = 100;
+
+        public int Amount
         {
-            //spriteRenderer = GetComponent<SpriteRenderer>();
+            get
+            {
+                return amount;
+            }
         }
 
-        // Update is called once per frame
-        void Update()
+        public void Initialize(CoinMaker coinMaker, Block block, Vector3 unitScale)
         {
+            this.block = block;
 
-        }
+            block.AttachInteratable(this);
 
-        public void Initialize(Vector3 localPosition, Vector3 unitScale)
-        {
-            transform.localPosition = localPosition;
+            this.coinMaker = coinMaker;
+            transform.localPosition = block.transform.localPosition;
             transform.localScale = unitScale;
         }
 
         public void UpdateState(BlockState newState)
         {
-            //throw new NotImplementedException();
+            if(newState == BlockState.Selected)
+            {
+                block.DettachInteratable();
+                coinMaker.CollectCoin(this);
+            }
         }
+
     }
 }
