@@ -32,8 +32,7 @@ namespace Challenge.PayTax
 
         public void CollectCoin(Coin coin)
         {
-            // 메세징 관련 로직 셈플코드. 정리해서 툴킷화 하자.
-            GameMaster.Instance.ProcMessege("CoinCollect", coin.Amount);
+            GameMaster.Instance.ProcSend("CoinCollect", coin.Amount);
             resourceManager.CollectGameObject(resourceCategory, coin.gameObject);
         }
 

@@ -3,26 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using ChallengeKit;
+using ChallengeKit.Pattern;
 using ChallengeKit.Board;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Challenge.PayTax
 {
-    public class GameMaster : MonoBehaviour
+    // 귀찮아서 IMessenger 여기 상속했지만, 분류상 여기하면 안됩니다.
+    public class GameMaster : Singleton<GameMaster>, IMessenger
     {
-        // Simple Singleton Implementation.
-        private static GameMaster instance = null;
-        public static GameMaster Instance
-        {
-            get
-            {
-                if (instance == null)
-                    instance = (GameMaster)FindObjectOfType(typeof(GameMaster));
-                return instance;
-            }
-        }
-       
         [SerializeField]
         private BoardManager boardManager;
         [SerializeField]
@@ -89,12 +79,18 @@ namespace Challenge.PayTax
             remainingPayTime = Mathf.Max(remainingPayTime, 0);
         }
 
-        // 간단한 메세지 구현. 이건 나중에 좀 구조화 해야 합니다.
-        public void ProcMessege(string Command, int Param1)
+        public void ProcSend(string Command, params object[] Objs)
         {
-            if(Command == "CoinCollect")
+            ProcReceive(Command, Objs);
+        }
+
+        public void ProcReceive(string Command, params object[] Objs)
+        {
+            if (Command == "CoinCollect")
             {
-                player.Deposit += ruleBook.CoinValue;
+                //player.Deposit += ruleBook.CoinValue;
+                // 위 코드가 맞지만 테스트 용도로.
+                player.Deposit += (int)Objs[0];
                 audioSource.Play();
             }
         }
@@ -151,6 +147,7 @@ namespace Challenge.PayTax
             // 다음에 내가 내야 할 금액
             return string.Format("CurrentTime : [{0:0.00}] \nNext PayTime : [{1:0.00}] \nMy Deposit : [{2}] \nPayAmount : [{3}]", currentTime, remainingPayTime, player.Deposit, ruleBook.PayAmout);
         }
+
     }
 }
 

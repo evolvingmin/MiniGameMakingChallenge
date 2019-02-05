@@ -847,7 +847,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinSpawnTime: 0.35
   payTaxTime: 3
-  coinValue: 10
+  coinValue: 100
   initialPayAmount: 100
   inflationValue: 1.1
 --- !u!82 &1771589338

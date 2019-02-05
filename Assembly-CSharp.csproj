@@ -63,7 +63,9 @@
   <ItemGroup>
     <Compile Include="Assets\ChallengeKit\Scripts\Board\Block.cs" />
     <Compile Include="Assets\ChallengeKit\Scripts\Board\BoardManager.cs" />
+    <Compile Include="Assets\ChallengeKit\Scripts\CodePattern\Singleton.cs" />
     <Compile Include="Assets\ChallengeKit\Scripts\Define.cs" />
+    <Compile Include="Assets\ChallengeKit\Scripts\Messenger.cs" />
     <Compile Include="Assets\ChallengeKit\Scripts\ResourceManager.cs" />
     <Compile Include="Assets\ChallengeKit\Scripts\UnityExtension\TransformEx.cs" />
     <Compile Include="Assets\ChallengeKit\Scripts\Utilities\DrawGizmos.cs" />
