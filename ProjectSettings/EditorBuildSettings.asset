@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Challenges/2019/PayTax/Scenes/PayTax.unity
+    path: Assets/Challenges/2019/1) PayTax/Scenes/PayTax.unity
     guid: 86d3a250be16fb242a9e0594eddac08f
   m_configObjects: {}
