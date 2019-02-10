@@ -75,12 +75,13 @@ namespace Challenge.YouNamSeng
                 index = isSentenceRemaining ? index + 1 : 0;
                 sentencesDisplay.text = "";
                 headerDisplay.text = "";
-                typingCoroutine = StartCoroutine(Typing());
 
-                if(isSentenceRemaining == false)
+                if (isSentenceRemaining == false)
                 {
                     characterDisplayer.ResetEmotions();
                 }
+
+                typingCoroutine = StartCoroutine(Typing());
             }
             else
             {

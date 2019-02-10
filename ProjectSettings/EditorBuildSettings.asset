@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Challenges/2019/1) PayTax/Scenes/PayTax.unity
+  - enabled: 0
+    path: Assets/Challenges/1) PayTax/Scenes/PayTax.unity
     guid: 86d3a250be16fb242a9e0594eddac08f
+  - enabled: 1
+    path: Assets/Challenges/2) YouNamSeng/Scenes/YouNamSeng.unity
+    guid: 3688bb8f33fe3cf4ba933a78ea98a4a8
   m_configObjects: {}
