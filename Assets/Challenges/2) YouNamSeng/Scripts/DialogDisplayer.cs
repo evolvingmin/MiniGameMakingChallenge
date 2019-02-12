@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using TMPro;
 using UnityEngine;
+using ChallengeKit.UI;
 
 namespace Challenge.YouNamSeng
 {
-    public class DialogDisplayer : MonoBehaviour
+    public class DialogDisplayer : MonoBehaviour, IDialogDisplayable
     {
         [SerializeField]
         private CharacterDisplayer characterDisplayer;
@@ -14,32 +15,33 @@ namespace Challenge.YouNamSeng
 
         [SerializeField]
         private TextMeshProUGUI sentencesDisplay;
-        
-        private int index = 0;
-        private bool isDone = false;
 
-        private Coroutine typingCoroutine;
+        [SerializeField]
+        private Dialog dialog;
 
         private void Start()
         {
-            typingCoroutine = StartCoroutine(Typing());
+            dialog.Init(this);
         }
 
-        IEnumerator Typing()
+        public void AppendLetterToDisplayText(char Letter)
         {
-            DialogManager.DialogData CurrentData = DialogManager.Instance.GetDialogDataAt(index);
+            sentencesDisplay.text += Letter;
+        }
 
-            headerDisplay.text = CurrentData.speaker;
+        public void SetDisplayDialogByData(Dialog.Data DialogData)
+        {
+            headerDisplay.text = DialogData.speaker;
 
-            if (CurrentData.headerAlignment == "left")
+            if (DialogData.headerAlignment == "left")
             {
                 headerDisplay.alignment = TextAlignmentOptions.TopLeft;
             }
-            else if (CurrentData.headerAlignment == "right")
+            else if (DialogData.headerAlignment == "right")
             {
                 headerDisplay.alignment = TextAlignmentOptions.TopRight;
             }
-            else if (CurrentData.headerAlignment == "center")
+            else if (DialogData.headerAlignment == "center")
             {
                 headerDisplay.alignment = TextAlignmentOptions.Center;
             }
@@ -48,51 +50,31 @@ namespace Challenge.YouNamSeng
             // 그리고 이렇게만 작성하니, 특정 캐릭터에 대한 리엑션이 늦게 된다. 
             // 어떤 대사를 하게 되면, 다른 캐릭터도 즉시나 혹은 일정 시간후에 리엑션이 있어야 하는데
             // 이렇게 되면 대사를 치지 않으면 해당 케릭터가 바로 반응 할 수 없다. ( 물론 대사를 치기만 하면 된다 )
-            if (CurrentData.speaker == "나")
+            if (DialogData.speaker == "나")
             {
-                characterDisplayer.SetEmotionColor(0, CurrentData.emotion);
+                characterDisplayer.SetEmotionColor(0, DialogData.emotion);
             }
-            else if(CurrentData.speaker == "유남생")
+            else if (DialogData.speaker == "유남생")
             {
-                characterDisplayer.SetEmotionColor(1, CurrentData.emotion);
+                characterDisplayer.SetEmotionColor(1, DialogData.emotion);
             }
-
-            foreach (char letter in CurrentData.sentences.ToCharArray())
-            {
-                sentencesDisplay.text += letter;
-                yield return new WaitForSeconds(CurrentData.speed);
-            }
-            isDone = true;
         }
 
-        public void OnContinuButtonClick()
-        { 
-            if (isDone)
-            {
-                bool isSentenceRemaining = index < DialogManager.Instance.DialogLenth - 1;
-
-                isDone = false;
-                index = isSentenceRemaining ? index + 1 : 0;
-                sentencesDisplay.text = "";
-                headerDisplay.text = "";
-
-                if (isSentenceRemaining == false)
-                {
-                    characterDisplayer.ResetEmotions();
-                }
-
-                typingCoroutine = StartCoroutine(Typing());
-            }
-            else
-            {
-                isDone = true;
-                StopCoroutine(typingCoroutine);
-                // 이쯤되면 다이얼로그 매니져를 굳이 만들 필요가 없다는게 보인다. 규모나 사이즈생각하면 걍 몰아도 될듯.
-                sentencesDisplay.text = DialogManager.Instance.GetDialogDataAt(index).sentences;
-            }
-
+        public void OnClear()
+        {
+            sentencesDisplay.text = "";
+            headerDisplay.text = "";
         }
 
+        public void OnFinished()
+        {
+            characterDisplayer.ResetEmotions();
+        }
+
+        public void SetSentenceToDisplayText(string Sentences)
+        {
+            sentencesDisplay.text = Sentences;
+        }
     }
 
 }

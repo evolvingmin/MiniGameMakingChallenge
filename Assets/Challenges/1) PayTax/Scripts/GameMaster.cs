@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using ChallengeKit;
 using ChallengeKit.Pattern;
-using ChallengeKit.Board;
+using ChallengeKit.BoardSystem;
 using UnityEngine;
 using UnityEngine.UI;
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using ChallengeKit;
-using ChallengeKit.Board;
+using ChallengeKit.BoardSystem;
 
 namespace Challenge.PayTax
 {

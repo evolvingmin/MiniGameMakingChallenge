@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using ChallengeKit;
-using ChallengeKit.Board;
+using ChallengeKit.BoardSystem;
 using UnityEngine;
 
 
