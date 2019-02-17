@@ -21,6 +21,7 @@ namespace Challenge.YouNamSeng
 
         public void SetEmotionColor(int index, string emotion)
         {
+            
             switch (emotion)
             {
                 case "angry":

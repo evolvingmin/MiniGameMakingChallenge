@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ChallengeKit.BoardSystem
+namespace ChallengeKit.GamePlay.BoardSystem
 {
     public enum BlockState
     {

@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using ChallengeKit;
-using ChallengeKit.BoardSystem;
+using ChallengeKit.GamePlay.BoardSystem;
 using UnityEngine;
 
 namespace Challenge.PayTax

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using ChallengeKit;
-using ChallengeKit.BoardSystem;
-using UnityEngine;
-
+﻿using UnityEngine;
 
 namespace Challenge.PayTax
 {

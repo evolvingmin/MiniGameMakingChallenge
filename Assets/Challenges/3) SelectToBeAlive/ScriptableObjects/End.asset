@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: End
+  m_EditorClassIdentifier: Assembly-CSharp:ChallengeKit.GamePlay:ScenarioNode
+  ScriptRoot: STBAScripts/
+  ScriptName: End
+  DialogType: Challenge.SelectToBeAlive.STBAData
+  ChildNodes:
+  - {fileID: 11400000, guid: 7e22f3f4dba2d6045b4939c8fd57cad8, type: 2}
+  - {fileID: 11400000, guid: 05004b878cd30f846bf4a4649c07b959, type: 2}

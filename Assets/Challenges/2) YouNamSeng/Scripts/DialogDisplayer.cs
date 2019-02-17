@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using TMPro;
 using UnityEngine;
-using ChallengeKit.UI;
+using ChallengeKit.GamePlay;
+using System.Collections.Generic;
 
 namespace Challenge.YouNamSeng
 {
@@ -17,9 +18,9 @@ namespace Challenge.YouNamSeng
         private TextMeshProUGUI sentencesDisplay;
 
         [SerializeField]
-        private Dialog dialog;
+        private DialogSystem dialog;
 
-        public class YouNamSengData : Dialog.Data
+        public class YouNamSengData : DialogSystem.Data
         {
             public string speaker;
             public string headerAlignment;
@@ -28,8 +29,8 @@ namespace Challenge.YouNamSeng
 
         private void Start()
         {
-            dialog.Init(this);
-            dialog.ParseCSVData("Sample", typeof(YouNamSengData));
+            dialog.Init(new DialogParser(), this);
+            dialog.ParseCSVData<YouNamSengData>("Sample");
             dialog.StartDialog();
         }
 
@@ -38,7 +39,7 @@ namespace Challenge.YouNamSeng
             sentencesDisplay.text += Letter;
         }
 
-        public void SetDisplayDialogByData(Dialog.Data DialogData)
+        public void SetDisplayDialogByData(DialogSystem.Data DialogData)
         {
             YouNamSengData youNamSengData = (YouNamSengData)DialogData;
 
@@ -85,6 +86,11 @@ namespace Challenge.YouNamSeng
         public void SetSentenceToDisplayText(string Sentences)
         {
             sentencesDisplay.text = Sentences;
+        }
+
+        public void DisplaySelectList(List<string> selections)
+        {
+           //
         }
     }
 

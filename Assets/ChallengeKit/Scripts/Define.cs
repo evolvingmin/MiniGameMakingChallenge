@@ -8,6 +8,7 @@ namespace ChallengeKit
             NOT_INITIALIZED,
             OK,
             ERROR_DATA_NOT_IN_PROPER_RANGE,
+            SYSTEM_PARSER_NULL
         }
     }
 }

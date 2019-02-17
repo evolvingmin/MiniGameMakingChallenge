@@ -60,15 +60,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ChallengeKit\Scripts\BoardSystem\Block.cs" />
-    <Compile Include="Assets\ChallengeKit\Scripts\BoardSystem\BoardManager.cs" />
     <Compile Include="Assets\ChallengeKit\Scripts\CsvTableHandler\CsvFile.cs" />
     <Compile Include="Assets\ChallengeKit\Scripts\CsvTableHandler\CsvTableHandler.cs" />
     <Compile Include="Assets\ChallengeKit\Scripts\Define.cs" />
-    <Compile Include="Assets\ChallengeKit\Scripts\Messenger.cs" />
+    <Compile Include="Assets\ChallengeKit\Scripts\GamePlay\BoardSystem\Block.cs" />
+    <Compile Include="Assets\ChallengeKit\Scripts\GamePlay\BoardSystem\BoardManager.cs" />
+    <Compile Include="Assets\ChallengeKit\Scripts\GamePlay\DialogParser.cs" />
+    <Compile Include="Assets\ChallengeKit\Scripts\GamePlay\DialogSystem.cs" />
+    <Compile Include="Assets\ChallengeKit\Scripts\GamePlay\ScenarioParser.cs" />
+    <Compile Include="Assets\ChallengeKit\Scripts\GamePlay\ScenarioSystem.cs" />
+    <Compile Include="Assets\ChallengeKit\Scripts\Pattern\MessageSystem.cs" />
+    <Compile Include="Assets\ChallengeKit\Scripts\Pattern\Messenger.cs" />
     <Compile Include="Assets\ChallengeKit\Scripts\Pattern\Singleton.cs" />
     <Compile Include="Assets\ChallengeKit\Scripts\ResourceManager.cs" />
-    <Compile Include="Assets\ChallengeKit\Scripts\UI\Dialog.cs" />
     <Compile Include="Assets\ChallengeKit\Scripts\Utilities\DrawGizmos.cs" />
     <Compile Include="Assets\ChallengeKit\Scripts\Utilities\MathEx.cs" />
     <Compile Include="Assets\ChallengeKit\Scripts\Utilities\RandomEx.cs" />
@@ -81,6 +85,10 @@
     <Compile Include="Assets\Challenges\1) PayTax\Scripts\Slave.cs" />
     <Compile Include="Assets\Challenges\2) YouNamSeng\Scripts\CharacterDisplayer.cs" />
     <Compile Include="Assets\Challenges\2) YouNamSeng\Scripts\DialogDisplayer.cs" />
+    <Compile Include="Assets\Challenges\3) SelectToBeAlive\Scripts\STBACharacterDisplayer.cs" />
+    <Compile Include="Assets\Challenges\3) SelectToBeAlive\Scripts\STBADialogDisplayer.cs" />
+    <Compile Include="Assets\Challenges\3) SelectToBeAlive\Scripts\STBADialogSelectListDisplayer.cs" />
+    <Compile Include="Assets\Challenges\3) SelectToBeAlive\Scripts\STBAGameMaster.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />

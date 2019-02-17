@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ChallengeKit.BoardSystem
+namespace ChallengeKit.GamePlay.BoardSystem
 {
     public class BoardManager : MonoBehaviour
     {

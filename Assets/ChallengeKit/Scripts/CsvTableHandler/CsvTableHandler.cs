@@ -319,6 +319,19 @@ namespace ChallengeKit
             {
                 return EqualityComparer<T>.Default.Equals(x, y);
             }
+
+            public List<T> ConvertoGenericList<T>()
+            {
+                List<T> ConvertedList = new List<T>();
+
+                foreach (var row in rows)
+                {
+                    ConvertedList.Add((T)row.CovertToParsedRow(typeof(T)));
+                }
+
+                return ConvertedList;
+            }
+
         }
 
         private static Dictionary<string, Table> tableMap = new Dictionary<string, Table>();
