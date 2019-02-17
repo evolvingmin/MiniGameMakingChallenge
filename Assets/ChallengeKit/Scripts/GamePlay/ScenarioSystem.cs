@@ -6,18 +6,6 @@ using System;
 
 namespace ChallengeKit.GamePlay
 {
-    [CreateAssetMenu(menuName = "Challenge/SelectToBeAlive", fileName = "ScenarioNode")]
-    public class ScenarioNode : ScriptableObject
-    {
-        public string ScriptRoot;
-        public string ScriptName;
-
-        public string DialogType;
-
-        private List<ScenarioNode> parentNodes;
-        public List<ScenarioNode> ChildNodes;
-        
-    }
 
     public class SelectionInfo
     {

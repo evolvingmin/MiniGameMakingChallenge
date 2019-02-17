@@ -27,6 +27,12 @@ namespace ChallengeKit.GamePlay
             {
                 ScenarioNode startnode = (ScenarioNode)Objs[0];
                 
+                if(dialogSystem == null)
+                {
+                    UnityEngine.Debug.LogWarning("dialogSystem is null, Command is : " + Command);
+                    return;
+                }
+
                 dialogSystem.ParseCSVData(startnode.ScriptRoot, startnode.DialogType, startnode.ScriptName);
                 dialogSystem.StartDialog();
             }
