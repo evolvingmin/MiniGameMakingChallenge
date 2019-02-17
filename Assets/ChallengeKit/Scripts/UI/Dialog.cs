@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 namespace ChallengeKit.UI
@@ -28,10 +30,7 @@ namespace ChallengeKit.UI
     {
         public class Data
         {
-            public string speaker;
             public string sentences;
-            public string headerAlignment;
-            public string emotion;
             public float speed;
         }
 
@@ -59,24 +58,20 @@ namespace ChallengeKit.UI
             return dialogDatas[Index];
         }
 
-        // 여기 데이터 세팅도 csv 세팅에 따라서 달라질 수 있기 때문에 이 부분도 인터페이스 화 해야할 것 같다.
-        private void Awake()
-        {
-            CsvTableHandler.ResourcePath = dialogRootPath;
+        // 왜 이 고생을 하실까... 제이슨 파서나 xml 파서 system에서 제공하는 거 있고, 그거 어트리뷰트로 쓰면 될건데...
+        // 기억이 안났음... -_-;;;;;;;;;;;;;;;;;;;;;;;;;
 
-            CsvTableHandler.Table SampleTable = CsvTableHandler.Get("Sample", CsvTableHandler.StreamMode.Resource);
-            dialogDatas = new List<Data>(SampleTable.Length);
-            for (int i = 0; i < SampleTable.Length; i++ )
+        public void ParseCSVData(string TableName, Type ParsingType) // 1) 파싱하고자 하는 타입 데이터를 받고
+        { 
+            CsvTableHandler.ResourcePath = dialogRootPath; // 이것도 폴더에 따른 계층 구분이 들어간다면... 리펙대상
+
+            CsvTableHandler.Table CSVTable = CsvTableHandler.Get(TableName, CsvTableHandler.StreamMode.Resource);
+            dialogDatas = new List<Data>(CSVTable.Length);
+
+
+            for (int i = 0; i < CSVTable.Length; i++)
             {
-                Data Current = new Data
-                {
-                    sentences = SampleTable.GetAt(i).Get<string>("sentences"),
-                    speaker = SampleTable.GetAt(i).Get<string>("speaker"),
-                    headerAlignment = SampleTable.GetAt(i).Get<string>("headerAlignment"),
-                    emotion = SampleTable.GetAt(i).Get<string>("emotion"),
-                    speed = SampleTable.GetAt(i).Get<float>("speed")
-                };
-                dialogDatas.Add(Current);
+                dialogDatas.Add((Data)CSVTable.GetAt(i).CovertToParsedRow(ParsingType));
             }
         }
 
@@ -88,9 +83,6 @@ namespace ChallengeKit.UI
                 return Define.Result.NOT_INITIALIZED;
 
             isSetDialogDisplayble = true;
-
-            // 요건 시점 따로 제어해야할듯.
-            StartDialog();
 
             return Define.Result.OK;
         }

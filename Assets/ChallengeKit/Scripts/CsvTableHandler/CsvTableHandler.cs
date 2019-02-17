@@ -51,6 +51,33 @@ namespace ChallengeKit
                 }
             }
 
+            public object Get(string name, Type type)
+            {
+                int targetIndex = table.GetIndex(name);
+
+                if (targetIndex == -1)
+                {
+                    return Convert.ChangeType(0, type); // 타입.
+                }
+                else
+                {
+                    return Convert.ChangeType(data[targetIndex], type); // 타입.
+                }
+            }
+
+            public object CovertToParsedRow(Type ParsingType)
+            {
+                var Fields = ParsingType.GetFields();
+                object ParsedRow = Activator.CreateInstance(ParsingType);
+
+                foreach (var Field in Fields)
+                {
+                    Field.SetValue(ParsedRow, Get(Field.Name, Field.FieldType));
+                }
+
+                return ParsedRow;
+            }
+
             public Dictionary<string, T> QueryByContainedString<T>(string value)
             {
                 Dictionary<string, T> returnTable = new Dictionary<string, T>();

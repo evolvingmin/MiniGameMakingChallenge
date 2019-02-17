@@ -19,9 +19,18 @@ namespace Challenge.YouNamSeng
         [SerializeField]
         private Dialog dialog;
 
+        public class YouNamSengData : Dialog.Data
+        {
+            public string speaker;
+            public string headerAlignment;
+            public string emotion;
+        }
+
         private void Start()
         {
             dialog.Init(this);
+            dialog.ParseCSVData("Sample", typeof(YouNamSengData));
+            dialog.StartDialog();
         }
 
         public void AppendLetterToDisplayText(char Letter)
@@ -31,17 +40,19 @@ namespace Challenge.YouNamSeng
 
         public void SetDisplayDialogByData(Dialog.Data DialogData)
         {
-            headerDisplay.text = DialogData.speaker;
+            YouNamSengData youNamSengData = (YouNamSengData)DialogData;
 
-            if (DialogData.headerAlignment == "left")
+            headerDisplay.text = youNamSengData.speaker;
+
+            if (youNamSengData.headerAlignment == "left")
             {
                 headerDisplay.alignment = TextAlignmentOptions.TopLeft;
             }
-            else if (DialogData.headerAlignment == "right")
+            else if (youNamSengData.headerAlignment == "right")
             {
                 headerDisplay.alignment = TextAlignmentOptions.TopRight;
             }
-            else if (DialogData.headerAlignment == "center")
+            else if (youNamSengData.headerAlignment == "center")
             {
                 headerDisplay.alignment = TextAlignmentOptions.Center;
             }
@@ -50,13 +61,13 @@ namespace Challenge.YouNamSeng
             // 그리고 이렇게만 작성하니, 특정 캐릭터에 대한 리엑션이 늦게 된다. 
             // 어떤 대사를 하게 되면, 다른 캐릭터도 즉시나 혹은 일정 시간후에 리엑션이 있어야 하는데
             // 이렇게 되면 대사를 치지 않으면 해당 케릭터가 바로 반응 할 수 없다. ( 물론 대사를 치기만 하면 된다 )
-            if (DialogData.speaker == "나")
+            if (youNamSengData.speaker == "나")
             {
-                characterDisplayer.SetEmotionColor(0, DialogData.emotion);
+                characterDisplayer.SetEmotionColor(0, youNamSengData.emotion);
             }
-            else if (DialogData.speaker == "유남생")
+            else if (youNamSengData.speaker == "유남생")
             {
-                characterDisplayer.SetEmotionColor(1, DialogData.emotion);
+                characterDisplayer.SetEmotionColor(1, youNamSengData.emotion);
             }
         }
 
