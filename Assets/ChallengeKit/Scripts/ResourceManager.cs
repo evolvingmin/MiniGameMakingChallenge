@@ -180,7 +180,6 @@ namespace ChallengeKit
 
     public class ResourceManager : MonoBehaviour
     {
-
         //public delegate void SpawnAction<T>(T spawned);
 
         private Dictionary<string, UnityObjectCollection> collections;

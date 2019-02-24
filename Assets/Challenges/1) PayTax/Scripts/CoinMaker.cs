@@ -32,7 +32,7 @@ namespace Challenge.PayTax
 
         public void CollectCoin(Coin coin)
         {
-            GameMaster.Instance.ProcSend("CoinCollect", coin.Amount);
+            PTGameMaster.Instance.ProcSend("CoinCollect", coin.Amount);
             resourceManager.CollectGameObject(resourceCategory, coin.gameObject);
         }
 

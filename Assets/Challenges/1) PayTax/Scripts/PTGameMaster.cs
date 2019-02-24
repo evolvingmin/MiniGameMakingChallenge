@@ -11,7 +11,7 @@ using UnityEngine.UI;
 namespace Challenge.PayTax
 {
     // 귀찮아서 IMessenger 여기 상속했지만, 분류상 여기하면 안됩니다.
-    public class GameMaster : Singleton<GameMaster>, IMessenger
+    public class PTGameMaster : Singleton<PTGameMaster>, IMessenger
     {
         [SerializeField]
         private BoardManager boardManager;

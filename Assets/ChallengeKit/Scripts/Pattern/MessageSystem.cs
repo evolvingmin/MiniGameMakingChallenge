@@ -21,7 +21,8 @@ namespace ChallengeKit.Pattern
 
             systemObjects.Add(systemObject);
         }
-
+        // 진짜 페킷을 가정한다면 이런 유연한 시스템은 만들어 질 수 없다. 아니면 레이어 하나 더 두던가.
+        // 그냥 클래스 뭉터기 하나 던지고 받는게 더 나을거다.
         public void BroadcastSystems(SystemMono sender, string command, params object[] objs)
         {
             foreach (var system in systemObjects)
@@ -50,6 +51,9 @@ namespace ChallengeKit.Pattern
 
             if (parser == null)
                 return Define.Result.SYSTEM_PARSER_NULL;
+
+            // awake를 오버로드 할 시, 명시적으로  Init 을 호출하면 마찬가지로 리슨 해줄 수 있도록.
+            MessageSystem.Instance.Listen(this);
 
             return parser.Init(this);
         }

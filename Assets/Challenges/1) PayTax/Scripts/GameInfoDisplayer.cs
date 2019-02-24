@@ -8,7 +8,7 @@ namespace Challenge.PayTax
         private Text textField;
 
         [SerializeField]
-        private GameMaster gameMaster;
+        private PTGameMaster gameMaster;
 
         private void Awake()
         {
