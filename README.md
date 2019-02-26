@@ -1,8 +1,6 @@
 # MiniGameMakingChallenge
 Unity Game Making Challenge for less than 1 Day. This Project will be a Cumulative Repository to get an actual game making ability, Making weekly routine for study and future prototypes. 
 
-OneNote Progress note View Link (Written by Korean): https://1drv.ms/u/s!AlEf8xQtchKclZ8I1pjhKnJNE9jf-A
-
 ## Prerequisites
 Unity Latest Version 2018.3.0f2
 
@@ -37,5 +35,5 @@ So... nothing new. -_-;;
 
 ## Future
 
-public GitHub projects for making actual simple free game to publish android market. Learning for entire game making cycle.
+private GitHub projects for making actual simple free game to publish android market. Learning for entire game making cycle.
 I mean, really game, not just like these simple library samples.
